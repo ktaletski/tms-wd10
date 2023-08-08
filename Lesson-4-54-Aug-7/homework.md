@@ -56,7 +56,7 @@ C помощью цикла **for in** вывести в консоль снач
         andrey: 500,
         sveta: 413,
         anton: 987,
-        andrey: 664,
+        alex: 664,
         alexandra: 199
     }
 ```
