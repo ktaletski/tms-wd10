@@ -1,0 +1,27 @@
+<body>
+  <!-- комментарий -->
+
+  <script>
+    // для комментария
+    console.log( document.body.firstChild.tagName ); // undefined (не элемент)
+    console.log( document.body.firstChild.nodeName ); // #comment
+
+    // для div'а
+    console.log( document.body.lastChild.tagName ); // DIV
+    console.log( document.body.lastChild.nodeName ); // DIV
+  </script>
+
+  <div>My Div</div>
+</body>
+
+
+<body>
+  <p>Параграф</p>
+  <div>DIV</div>
+
+  <script>
+    console.lot( document.body.innerHTML ); // читаем текущее содержимое
+    document.body.innerHTML = 'Новый BODY!'; // заменяем содержимое
+  </script>
+
+</body>
