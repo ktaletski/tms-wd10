@@ -25,7 +25,7 @@ module.exports = (env, options) => {
       rules: [
         ...rules.files(),
         rules.scripts(environment),
-        rules.styles(environment),
+        ...rules.styles(environment),
       ],
     },
     plugins: [
