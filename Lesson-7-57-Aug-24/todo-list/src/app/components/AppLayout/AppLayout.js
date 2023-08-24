@@ -1,7 +1,7 @@
 import styles from './AppLayout.module.css';
 
 export function AppLayout({ header, content }) {
-  this.render = function () {
+  this.toString = function () {
     return `
       <div class=${styles.container}>
         <header class=${styles.header}>

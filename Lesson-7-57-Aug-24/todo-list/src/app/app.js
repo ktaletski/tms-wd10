@@ -1,23 +1,16 @@
 import './vendor';
 import './index.css';
 
-import styles from './app.module.css';
-import { AppLayout } from './components/AppLayout';
-
-function Header({ title }) {
-  this.render = function () {
-    return `<div>${title}</div>`;
-  };
-}
+import { AppHeader, AppLayout } from './components';
 
 function Search() {
-  this.render = function () {
+  this.toString = function () {
     return '<div>Search</div>';
   };
 }
 
 function List() {
-  this.render = function () {
+  this.toString = function () {
     return '<div>List</div>';
   };
 }
@@ -27,14 +20,14 @@ function App() {
 
   this.render = function () {
     return new AppLayout({
-      header: new Header({ title: 'To Do List' }).render(),
+      header: new AppHeader({ title: 'To Do List' }),
       content: `
         <div>
-          ${new Search().render()}
-          ${new List().render()}
+          ${new Search()}
+          ${new List()}
         <div>
       `,
-    }).render();
+    });
   };
 }
 
