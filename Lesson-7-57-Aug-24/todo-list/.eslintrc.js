@@ -152,7 +152,7 @@ module.exports = {
         'keyword-spacing': 'error',
         'linebreak-style': [0, 'unix'],
         'max-nested-callbacks': [0, 2],
-        'new-cap': 'error',
+        'new-cap': 0,
         'new-parens': 'error',
         'newline-after-var': 0,
         'no-array-constructor': 'error',

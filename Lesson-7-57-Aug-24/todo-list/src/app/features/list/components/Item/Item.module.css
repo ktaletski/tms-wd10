@@ -1,0 +1,20 @@
+.item {
+  all: unset;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.item__completed {
+  color: #a0a0a0;
+  text-decoration: line-through;
+}
+
+.title {
+  flex: 1 1 auto;
+}
