@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>My Website</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+<script>
+  const target = document.getElementById('button');
+
+document.body.addEventListener('click', (event) => {
+  console.log(`clicked on ${event.target}`);
+  console.log(`coordinates: [${event.clientX}, ${event.clientY}]`);
+});
+
+const handleClick = () => {
+  console.log('погружение')
+}
+
+document.body.addEventListener('click', handleClick, {capture: true});
+// ...
+document.body.removeEventListener('click', handleClick, {capture: true});
+
+document.body.addEventListener('click', (event) => {
+  console.log(`Погружение`);
+}, {capture: true});
+document.body.addEventListener('click', (event) => {
+  console.log(`всплытие`);
+});
+
+
+element.addEventListener('click', () => {console.log(1)});
+element.addEventListener('click', () => {console.log(2)});
+element.addEventListener('click', () => {console.log(3)});
+
+// click
+// 1
+// 2
+// 3
+</script>
+<button id="button">Click me</button> 
+<script>
+  const list = document.getElementById('list');
+
+  list.addEventListener('click', (event) => {
+      console.log(event.target.dataset.value);
+  })
+</script>
+
+<ol id="list">
+  <li data-value="kek-1">Lol</li>
+  <li data-value="kek-2">Kek</li>
+  <li data-value="kek-3">Check</li>
+</ol>
+  </body>
+</html>

@@ -30,7 +30,7 @@ module.exports = (env, options) => {
     },
     plugins: [
       plugins.html(PROJECT_HTML_ENTRY)(environment),
-      plugins.images(environment),
+      // plugins.images(environment),
       plugins.extractStyles(environment),
     ],
     devServer: {

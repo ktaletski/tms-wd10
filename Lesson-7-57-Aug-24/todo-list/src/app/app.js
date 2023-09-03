@@ -1,5 +1,6 @@
 import './vendor';
 import './index.css';
+import './reset.css';
 
 import { AppHeader, AppLayout } from './components';
 import { mockTasks } from './constants';
