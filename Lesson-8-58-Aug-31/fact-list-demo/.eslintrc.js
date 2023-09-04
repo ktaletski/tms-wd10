@@ -14,7 +14,7 @@ module.exports = {
     jest: true,
   },
   parserOptions: {
-    ecmaVersion: 2018,
+    ecmaVersion: 2020,
     sourceType: 'module',
   },
   overrides: [
@@ -171,7 +171,7 @@ module.exports = {
         'no-spaced-func': 'error',
         'no-ternary': 0,
         'no-trailing-spaces': 'error',
-        'no-underscore-dangle': 'error',
+        'no-underscore-dangle': 0,
         'no-unneeded-ternary': 0,
         'one-var': 0,
         'operator-assignment': [0, 'always'],
