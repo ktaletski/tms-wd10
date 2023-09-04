@@ -1,6 +1,5 @@
 import './vendor';
 import './index.css';
-import './reset.css';
 
 import { FactDetailsPage } from './pages/fact-details';
 import { FactListPage } from './pages/fact-list';

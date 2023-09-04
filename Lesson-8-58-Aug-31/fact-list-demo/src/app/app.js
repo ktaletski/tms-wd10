@@ -1,12 +1,24 @@
 import './vendor';
 import './index.css';
 
-import { AppHeader, AppLayout } from './components';
-import { List } from './features/fact-list';
-import { mockList } from './mockData';
+import { FactDetailsPage } from './pages/fact-details';
+import { FactListPage } from './pages/fact-list';
+import { ROUTES } from './routes';
+import { RouteService } from './services/router';
 
 const root = document.getElementById('root');
-root.innerHTML = AppLayout({
-  header: AppHeader({ title: 'Animal Facts' }),
-  content: List({ items: mockList }),
-});
+
+RouteService.init()
+  .on({
+    route: ROUTES.HOME.path,
+    run: () => {
+      root.innerHTML = FactListPage();
+    },
+  })
+  .on({
+    route: ROUTES.FACT_DETAILS.path,
+    run: ({ id }) => {
+      root.innerHTML = FactDetailsPage({ id });
+    },
+  })
+  .start();
