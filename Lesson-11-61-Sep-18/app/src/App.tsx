@@ -1,15 +1,18 @@
+import { FC } from 'react';
 import './App.css';
-import React from 'react';
-import logo from './logo.svg';
+import { Logo } from './components/Logo';
 
-function App() {
+interface Props {
+  showLogo?: boolean;
+}
+
+export const App: FC<Props> = ({ showLogo }) => {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        {showLogo && <Logo />}
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
+          Edit <code>src/App.tsx</code> and save to reload</p>
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -22,5 +25,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
