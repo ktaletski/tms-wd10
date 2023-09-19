@@ -22,13 +22,16 @@
     "eslint-plugin-json-es": "^1.5.7",
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
-    "prettier": "^3.0.3"
+    "prettier": "^3.0.3",
+    "typescript-plugin-css-modules": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx  .",
+    "lint:fix": "npm run lint -- --fix"
   },
   "browserslist": {
     "production": [
@@ -302,6 +305,9 @@
             {
               "exceptions": [
                 "-"
+              ],
+              "markers": [
+                "/"
               ]
             }
           ],
