@@ -21,43 +21,48 @@ const IncrementButton: FC<IncrementButtonProps> = ({ count, increment }) => {
 };
 
 interface ResetButtonProps {
+  title: string;
   reset: () => void;
 }
 
-const ResetButton: FC<ResetButtonProps> = ({ reset }) => {
-  const [clickCount, setClickCount] = useState(0);
+const ResetButton: FC<ResetButtonProps> = ({ title, reset }) => {
+  return <button onClick={reset}>{title}</button>;
+};
 
-  const handleClick = () => {
-    reset();
-    setClickCount((count) => ++count);
-  };
-
-  return (
-    <button onClick={handleClick}>
-      {clickCount > 5 ? "Слишком много ресетов, астанавитесь!" : "Ресет"}
-    </button>
-  );
+const TITLE_BY_STATE = {
+  ready: "Reset",
+  cooldown: "Please, wait to reset",
 };
 
 export const Counter: FC = () => {
   const [count, setCount] = useState(0);
+  const [resetState, setResetState] = useState<"ready" | "cooldown">("ready");
 
   const increment = () => {
     setCount((c) => c + 1);
   };
 
   const reset = () => {
+    if (resetState !== "ready") {
+      return;
+    }
+
     setCount(0);
+    setResetState("cooldown");
+
+    setTimeout(() => {
+      setResetState("ready");
+    }, 2000);
   };
 
-  const Component = count >= 3 ? "span" : "div";
-
   return (
-    <Component>
+    <div>
       <IncrementButton count={count} increment={increment} />
       <br />
       <br />
-      <ResetButton reset={reset} />
-    </Component>
+      {count > 0 && (
+        <ResetButton title={TITLE_BY_STATE[resetState]} reset={reset} />
+      )}
+    </div>
   );
 };

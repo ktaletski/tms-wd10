@@ -25,18 +25,7 @@ interface ResetButtonProps {
 }
 
 const ResetButton: FC<ResetButtonProps> = ({ reset }) => {
-  const [clickCount, setClickCount] = useState(0);
-
-  const handleClick = () => {
-    reset();
-    setClickCount((count) => ++count);
-  };
-
-  return (
-    <button onClick={handleClick}>
-      {clickCount > 5 ? "Слишком много ресетов, астанавитесь!" : "Ресет"}
-    </button>
-  );
+  return <button onClick={reset}>Reset</button>;
 };
 
 export const Counter: FC = () => {
@@ -50,14 +39,12 @@ export const Counter: FC = () => {
     setCount(0);
   };
 
-  const Component = count >= 3 ? "span" : "div";
-
   return (
-    <Component>
+    <div>
       <IncrementButton count={count} increment={increment} />
       <br />
       <br />
-      <ResetButton reset={reset} />
-    </Component>
+      {count > 0 && <ResetButton reset={reset} />}
+    </div>
   );
 };
