@@ -23,5 +23,5 @@
   },
   "include": [
     "src"
-  ]
+, "task-2.tsx"  ]
 }

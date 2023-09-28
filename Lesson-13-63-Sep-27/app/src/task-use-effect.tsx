@@ -1,17 +1,23 @@
-// import ReactDOM from "react-dom/client";
+/**
+ * Допишите код так, чтобы компонент ChatRoom создавал connection
+ * используя createConnection() и делал connection.connect() к нужной
+ * комнате.
+ *
+ * Компонент должен рисовать загрузочный экран, когда connection.connect()
+ * ещё не завершился.
+ * 
+ * Когде connection.connect() отработал, компонент должен показать в том
+ * числе новый полученный `connectionToken`.
+ *
+ * Компонент должен переподключаться на изменение serverUrl или roomId
+ *
+ * Компонент должен вызывать connection.disconnect(), когда ChatRoom
+ * будет отмонтирована - по нажатию на "Close chat"
+ *
+ * Результат должен выглядеть так: https://disk.yandex.com/i/AguB-Zso6IdKqw
+ */
 
-// import "./index.css";
-// import "./reset.css";
-
-// import { Component } from "./Heuristics--keys";
-
-// const root = ReactDOM.createRoot(
-//   document.getElementById("root") as HTMLElement,
-// );
-
-// root.render(<Component />);
-
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 
 import "./index.css";
@@ -24,25 +30,21 @@ const root = ReactDOM.createRoot(
 root.render(<App />);
 
 function ChatRoom({ roomId }: { roomId: string }) {
-  const inputRef = useRef<HTMLInputElement>(null);
   const [serverUrl, setServerUrl] = useState("https://localhost:4242");
   const [message, setMessage] = useState("");
-  const [connecting, setConnecting] = useState(true);
+  const [connecting, setConnecting] = useState(false);
   const [connectionToken, setConnectionToken] = useState<string | null>(null);
 
-  useEffect(() => {
-    const connection = createConnection({ serverUrl, roomId });
-
-    setConnecting(true);
-    connection
-      .connect()
-      .then(({ connectionToken }) => setConnectionToken(connectionToken))
-      .finally(() => setConnecting(false));
-
-    return () => {
-      connection.disconnect();
-    };
-  }, [serverUrl, roomId]);
+  useEffect(
+    () => {
+      /**
+       * Ваш код здесь
+       */
+    },
+    /**
+     * Не забудьте указать зависимости
+     */
+  );
 
   if (connecting) {
     return (
@@ -55,17 +57,14 @@ function ChatRoom({ roomId }: { roomId: string }) {
   return (
     <>
       <label>
-        Server URL: <input ref={inputRef} defaultValue={serverUrl} />
-        <button
-          onClick={() => {
-            if (inputRef.current?.value) setServerUrl(inputRef.current?.value);
-          }}
-        >
-          Reconnect
-        </button>
+        Server URL:{" "}
+        <input
+          value={serverUrl}
+          onChange={(e) => setServerUrl(e.target.value)}
+        />
       </label>
       <h1>Welcome to the {roomId} room!</h1>
-      <h3>You are connected using token "{connectionToken}"</h3>
+      <h3>You are connected with connection token {connectionToken}</h3>
       <label>
         Your message:{" "}
         <input value={message} onChange={(e) => setMessage(e.target.value)} />
@@ -113,7 +112,7 @@ export function createConnection({
             '✅ Connecting to "' + roomId + '" room at ' + serverUrl + "...",
           );
           resolve({
-            connectionToken: Math.floor(Math.random() * 1000000).toString(),
+            connectionToken: Math.floor(Math.random() * 10000).toString(),
           });
         }, 2000),
       );

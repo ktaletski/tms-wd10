@@ -16,10 +16,19 @@ const Counter: FC = () => {
 };
 
 export const Component: FC = () => {
+  const [isDiv, setIsDiv] = useState(true);
+
+  const toggleElementType = () => {
+    setIsDiv((prev) => !prev);
+  };
+
+  const ComponentToRender = isDiv ? "div" : "p";
+
   return (
-    <div>
+    <ComponentToRender>
       <h1>Counter</h1>
       <Counter />
-    </div>
+      <button onClick={toggleElementType}>🪄</button>
+    </ComponentToRender>
   );
 };
