@@ -23,5 +23,5 @@
   },
   "include": [
     "src"
-, "task-2.tsx", "../../Lesson-14-64-Oct-2/app/React-context.tsx"  ]
+, "task-2.tsx"  ]
 }

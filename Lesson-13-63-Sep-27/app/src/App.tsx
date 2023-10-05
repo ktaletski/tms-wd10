@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import "./App.css";
 
-import { Component } from "./List__reconciliation_key";
+import { Component } from "./Heuristics--dynamic-type";
 
 interface Props {
   showLogo?: boolean;
