@@ -23,5 +23,5 @@
   },
   "include": [
     "src"
-, "task-2.tsx", "../../Lesson-15-65-Oct-9/app/src/PatternsViewContainer.tsx"  ]
+, "task-2.tsx"  ]
 }
