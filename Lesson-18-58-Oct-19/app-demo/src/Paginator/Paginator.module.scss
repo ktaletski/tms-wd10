@@ -1,0 +1,20 @@
+.container {
+  all: unset;
+  display: flex;
+  column-gap: 8px;
+}
+
+.item {
+  all: unset;
+  font-size: 16px;
+
+  &__selected {
+    pointer-events: none;
+    font-weight: 700;
+  }
+
+  &:hover:not(&__selected) {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
