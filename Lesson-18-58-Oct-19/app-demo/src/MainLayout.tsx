@@ -1,9 +1,11 @@
-import { FC } from "react";
-import { Outlet } from "react-router-dom";
+import { FC, PropsWithChildren, ReactNode } from "react";
 
 import { useAppSelector } from "./store";
 
-export const MainLayout: FC = () => {
+export const MainLayout: FC<PropsWithChildren<{ searchNode?: ReactNode }>> = ({
+  searchNode,
+  children,
+}) => {
   const profile = useAppSelector((state) => state.user.profile);
   return (
     <div
@@ -17,6 +19,7 @@ export const MainLayout: FC = () => {
     >
       <header>
         <h1 style={{ margin: "unset", padding: "16px" }}>My App</h1>
+        {searchNode}
         {profile && (
           <div>
             <span>{profile.firstName}</span> <span>{profile.lastName}</span>
@@ -30,9 +33,7 @@ export const MainLayout: FC = () => {
           </div>
         )}
       </header>
-      <main style={{ height: "100%", minHeight: 0 }}>
-        <Outlet />
-      </main>
+      <main style={{ height: "100%", minHeight: 0 }}>{children}</main>
     </div>
   );
 };

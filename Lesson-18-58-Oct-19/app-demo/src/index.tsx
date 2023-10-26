@@ -1,21 +1,30 @@
 import { type FC } from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import { PersistGate } from "redux-persist/integration/react";
 
 import "./index.css";
 
+import { AuthGuard } from "./AuthGuard";
 import { DetailsPage } from "./DetailsPage";
-// import { ListPage } from "./ListPage";
+import { GlobalSearch } from "./features/search";
 import { LoginPage } from "./LoginPage";
 import { MainLayout } from "./MainLayout";
 import { ProductsPage } from "./ProductsPage";
-import { store } from "./store";
+import { SearchPage } from "./SearchPage";
+import { persistor, store } from "./store";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,
+    element: (
+      <MainLayout searchNode={<GlobalSearch />}>
+        <AuthGuard>
+          <Outlet />
+        </AuthGuard>
+      </MainLayout>
+    ),
     children: [
       {
         path: "/",
@@ -29,6 +38,10 @@ const router = createBrowserRouter([
         path: "/login",
         element: <LoginPage />,
       },
+      {
+        path: "/search",
+        element: <SearchPage />,
+      },
     ],
   },
 ]);
@@ -40,7 +53,9 @@ const root = ReactDOM.createRoot(
 const App: FC = () => {
   return (
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <PersistGate loading={"loading..."} persistor={persistor}>
+        <RouterProvider router={router} />
+      </PersistGate>
     </Provider>
   );
 };

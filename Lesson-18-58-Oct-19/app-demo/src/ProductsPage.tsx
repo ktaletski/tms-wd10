@@ -1,6 +1,8 @@
 import { type FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+import { api } from "./api";
+
 interface ProductListItem {
   id: string;
   title: string;
@@ -14,18 +16,11 @@ export const ProductsPage: FC = () => {
 
   const fetchProducts = () => {
     setIsLoading(true);
-
-    const headers = new Headers();
-    const token = localStorage.getItem("auth_token");
-    token && headers.append("Authorization", token);
-
-    fetch("https://dummyjson.com/auth/products", {
-      headers,
-    })
-      .then((res) => res.json())
-      .then(({ products }) => {
+    api
+      .get("https://dummyjson.com/auth/products")
+      .then(({ data }) => {
         /** TODO: do a runtime validation */
-        setItems(products);
+        setItems(data.products ?? []);
       })
       .finally(() => setIsLoading(false));
   };
@@ -38,7 +33,7 @@ export const ProductsPage: FC = () => {
     <div
       style={{
         display: "grid",
-        gridAutoRows: "auto min-content",
+        gridAutoRows: "min-content auto min-content",
         rowGap: "32px",
         height: "100%",
       }}
