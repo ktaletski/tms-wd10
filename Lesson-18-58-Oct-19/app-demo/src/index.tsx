@@ -8,7 +8,7 @@ import "./index.css";
 
 import { AuthGuard } from "./AuthGuard";
 import { DetailsPage } from "./DetailsPage";
-import { GlobalSearch } from "./features/search";
+import { GlobalSearch, SearchPageInput } from "./features/search";
 import { LoginPage } from "./LoginPage";
 import { MainLayout } from "./MainLayout";
 import { ProductsPage } from "./ProductsPage";
@@ -19,20 +19,26 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <MainLayout searchNode={<GlobalSearch />}>
-        <AuthGuard>
-          <Outlet />
-        </AuthGuard>
-      </MainLayout>
+      <AuthGuard>
+        <Outlet />
+      </AuthGuard>
     ),
     children: [
       {
         path: "/",
-        element: <ProductsPage />,
+        element: (
+          <MainLayout searchNode={<GlobalSearch />}>
+            <ProductsPage />
+          </MainLayout>
+        ),
       },
       {
         path: "/details/:id",
-        element: <DetailsPage />,
+        element: (
+          <MainLayout searchNode={<GlobalSearch />}>
+            <DetailsPage />,
+          </MainLayout>
+        ),
       },
       {
         path: "/login",
@@ -40,7 +46,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/search",
-        element: <SearchPage />,
+        element: (
+          <MainLayout searchNode={<SearchPageInput />}>
+            <SearchPage />
+          </MainLayout>
+        ),
       },
     ],
   },

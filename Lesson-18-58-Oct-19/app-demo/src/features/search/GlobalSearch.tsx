@@ -26,7 +26,3 @@ export const GlobalSearch: FC = () => {
     </div>
   );
 };
-
-// export const SearchInput: FC = () => {
-//   return <input />
-// }
